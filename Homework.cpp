@@ -240,7 +240,7 @@ Player robot2(1, m, 'D');
 bool Player::update_location(int type) //玩家更新
 {
     bool flag;
-    switch (type) //人目前不能走到光柱上,待调整
+    switch (type)
     {
     case 1:
         if (floor.getcontent(p.first, p.second + 1) == ' ' || floor.getcontent(p.first, p.second + 1) == 'L' || floor.getcontent(p.first, p.second + 1) == 'Q')
@@ -767,6 +767,8 @@ void deal_with_input() //处理输入/角色行为
             }
             Move_a_count = Speed[0];
         }
+        if (_kbhit())
+            ch = _getch();
         if (ch == ' ' && player1.has_bomb() && player1.get_is_lived() > 0)
         {
             bomb1.create_bomb(player1.get_location(), player1.get_condition(1));
